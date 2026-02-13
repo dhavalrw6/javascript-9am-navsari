@@ -1,0 +1,31 @@
+<script>
+    
+    let a = parseInt(prompt("Enter a: "));
+    let b = parseInt(prompt("Enter b: "));
+
+    let menu = `
+        Select Your choice.
+        1 for Addition.
+        2 for subtraction.
+        3 for Multiplication.
+        4 for Division.
+        Enter your Choice.
+    `;
+
+    let choice = parseInt(prompt(menu));
+    
+    switch(choice)
+    {
+        case 1:
+            sum(a,b);
+        break;
+        default:
+            alert("Wrong Choice.");
+            alert("Please Reload for new input.");
+    }
+
+    function sum(a,b){
+        alert(`sum of ${a} and ${b} is: ${a+b}`);
+    }
+
+</script>

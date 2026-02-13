@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Invoice Bill</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="invoice">
+        <h2>INVOICE</h2>
+
+        <div class="shop-details">
+            <p><strong>Shop Name:</strong> ABC Stationery</p>
+            <p><strong>Address:</strong> Surat, Gujarat</p>
+            <p><strong>Date:</strong> 18/12/2025</p>
+            <p><strong>Invoice No:</strong> INV-101</p>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Price (₹)</th>
+                    <th>Qty</th>
+                    <th>Total (₹)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td id="p_name"></td>
+                    <td id="price"></td>
+                    <td id="qty"></td>
+                    <td id="total-1"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="calculation">
+            <p id="total-2">Total Amount : </p>
+            <p id="disc">Discount (10%) : </p>
+            <hr>
+            <p class="net"><strong>Net Payable : ₹</strong></p>
+        </div>
+
+        <p class="thanks">Thank you for your purchase!</p>
+    </div>
+
+    <script>
+
+        // let product_name = prompt("Enter Product Name");
+        // let qty = prompt("Enter Qty");
+        // let price = prompt("Enter Price");
+
+        // document.getElementById('p_name').innerText = prompt("Enter Product Name"); 
+        // document.getElementById('qty').innerText = prompt("Enter Qty");
+        // document.getElementById('price').innerText = prompt("Enter Price");
+
+        let pname = document.getElementById('p_name');
+        let qty = document.getElementById('qty');
+        let price = document.getElementById('price');
+
+        pname.innerText = prompt("Enter Product Name")
+        qty.innerText = prompt("Enter Qty");
+        price.innerText = prompt("Enter Price");
+        document.getElementById('total-1').innerText = qty.innerText * price.innerText
+        document.getElementById('total-2').innerText += ' ' + qty.innerText * price.innerText
+        
+        // let disc = total * 0.1;
+        // let netTotal = total - disc;
+       
+
+
+
+
+    </script>
+</body>
+
+</html>

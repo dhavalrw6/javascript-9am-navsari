@@ -1,0 +1,59 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #eaeaea;
+}
+
+.invoice {
+    width: 500px;
+    margin: 40px auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 6px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.15);
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.shop-details p {
+    margin: 3px 0;
+    font-size: 14px;
+}
+
+table {
+    width: 100%;
+    margin-top: 15px;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    background: #333;
+    color: white;
+}
+
+.calculation {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.calculation p {
+    margin: 5px 0;
+}
+
+.net {
+    font-size: 16px;
+}
+
+.thanks {
+    text-align: center;
+    margin-top: 15px;
+    font-style: italic;
+}

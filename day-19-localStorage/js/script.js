@@ -3,50 +3,59 @@ const myTodoFrom = document.querySelector('#myTodo');
 const displayTodo = document.querySelector('#display-todo tbody');
 
 let list = JSON.parse(localStorage.getItem('list')) ?? [];
-let data = {};
-let languages = [];
+let data = JSON.parse(localStorage.getItem('editData')) || {};
+let languages = JSON.parse(localStorage.getItem('lang')) ?? [];
 let editData = JSON.parse(localStorage.getItem('editData'));
 
 inputs?.forEach((input) => {
     input.addEventListener('input', function (e) {
         let { name, value, checked } = e.target;
 
-        if(name == 'languages'){
-            if(checked){
+        if (name == 'languages') {
+            if (checked) {
                 languages.push(value);
-            }else{
-                languages = languages.filter((data)=>{
-                    if(data != value){
+            } else {
+                languages = languages.filter((data) => {
+                    if (data != value) {
                         return value;
                     }
                 })
             }
-            value = languages;                
-        }        
+            value = languages;
+        }
         data = { ...data, [name]: value };
     })
 })
 
-myTodoFrom?.addEventListener('submit',(event)=>{
+myTodoFrom?.addEventListener('submit', (event) => {
     event.preventDefault();
 
-    let newObj = {
-        id : Date.now(),
-        ...data
+    if (data.id) {
+        list = list.map((item)=>{
+            if(item.id == data.id) return data;
+            return item;
+        })
+
+        localStorage.removeItem('editData');
+    } else {
+        let newObj = {
+            id: Date.now(),
+            ...data
+        }
+
+        list.push(newObj);
     }
-    
-    list.push(newObj);
     console.log(list);
-    
-    localStorage.setItem('list',JSON.stringify(list));
+
+    localStorage.setItem('list', JSON.stringify(list));
     myTodoFrom.reset();
 });
 
-const handleDisplay = ()=>{
-    
+const handleDisplay = () => {
+
     displayTodo.innerHTML = '';
 
-    list.forEach((value,index)=>{
+    list.forEach((value, index) => {
         const row = document.createElement('tr');
         row.innerHTML = `
             <td>${index + 1}</td>
@@ -62,7 +71,7 @@ const handleDisplay = ()=>{
     })
 }
 
-if(displayTodo){
+if (displayTodo) {
     handleDisplay();
 }
 
@@ -76,32 +85,35 @@ if(displayTodo){
 //     localStorage.setItem('list',JSON.stringify(list));
 // }
 
-const handleDelete=(id)=>{
+const handleDelete = (id) => {
     list = list.filter(item => item.id != id);
-    localStorage.setItem('list',JSON.stringify(list));
+    localStorage.setItem('list', JSON.stringify(list));
     handleDisplay();
 }
 
-const handleEdit = (id)=>{
+const handleEdit = (id) => {
     console.log(id);
     let editData = list.find(item => item.id == id);
-    localStorage.setItem('editData',JSON.stringify(editData));
+    let lang = editData["languages"]
+    
+    localStorage.setItem('lang', JSON.stringify(lang));
+    localStorage.setItem('editData', JSON.stringify(editData));
     window.location.href = './index.html';
 }
 
-if(editData){
-    inputs.forEach((input)=>{
-        const {name} = input;
-        
-        if(name == 'languages'){
-            editData[name].forEach((item)=>{
-                if(item == input.value){
+if (editData) {
+    inputs.forEach((input) => {
+        const { name } = input;
+
+        if (name == 'languages') {
+            editData[name].forEach((item) => {
+                if (item == input.value) {
                     input.checked = true;
                 }
             })
-        }else{
+        } else {
             input.value = editData[name];
         }
-        
+
     })
 }

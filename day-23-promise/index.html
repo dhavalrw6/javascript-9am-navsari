@@ -1,0 +1,29 @@
+<script>
+
+    const promise = new Promise((resolve, reject) => {
+
+        let isValid = true;
+        setTimeout(() => {
+
+            if (isValid) {
+                resolve("Promise resolve.");
+            } else {
+                reject("Promise Rejected.");
+            }
+        },1000)
+    })
+
+    promise
+        .then((data)=>{
+            console.log("From Promise");            
+            console.log(data);            
+        })
+        .catch((error)=>{
+            console.log(error);            
+        })
+
+
+    console.log("Hello User...");
+    
+
+</script>
